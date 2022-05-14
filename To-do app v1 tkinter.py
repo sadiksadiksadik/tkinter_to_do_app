@@ -6,14 +6,15 @@ import pickle
 # Init display window
 root = tk.Tk()
 root.title('The Fox to-do app v1')
-# root.geometry('600x600')
-root.configure(bg='#F0FFFF')
+root.geometry('1000x1000')
+root.configure(bg='#000000')
 
 # Function to add task to listbox of tasks
 def add_task():
     task = task_entry.get()
     if task != "":
-        tasks_listbox.insert(tk.END, task)
+        tasks_listbox.insert(tk.END, '-------------------------------------------------------------', 
+                                task, '-------------------------------------------------------------')
         task_entry.delete(0, tk.END)
     else:
         tk.messagebox.showwarning(title='Warning', message='You must enter a task')
@@ -43,17 +44,20 @@ def save_task():
     pickle.dump(tasks, open('tasks.dat', 'wb'))
 
 
-
 # Create The GUI
 
 # Frame Box for Scroll Bar and Listbox
 the_task_frame = tk.Frame(root)
+the_task_frame.config(bg='#000000')
 the_task_frame.pack()
+the_task_frame.config(bg='#000000')
 
 # List of Tasks
-tasks_listbox = tk.Listbox(the_task_frame, font=('Calibri', 20, 'italic'), height=14, width=300)
+tasks_listbox = tk.Listbox(the_task_frame, font=('Terminal', 18), height=20, width=300)
 tasks_listbox.pack(side=tk.LEFT)
-tasks_listbox.configure(bg='#F5F5DC')
+tasks_listbox.configure(bg='#000000')
+tasks_listbox.configure(fg='#FFFFF0')
+tasks_listbox.configure(activestyle='none')
 
 # Scrollbar
 scrollbar = tk.Scrollbar(the_task_frame)
@@ -62,28 +66,40 @@ tasks_listbox.config(yscrollcommand=scrollbar.set)
 scrollbar.config(command=tasks_listbox.yview)
 
 # Task Text Entry Form
-task_entry = tk.Entry(root, width=300)
-task_entry.pack()
+task_entry = tk.Entry(root, text='Add tasks here', width=300)
+task_entry.pack(fill=tk.Y)
+task_entry.configure(bg='#000000')
+task_entry.configure(fg='#FFFFF0')
+task_entry.configure( font=('Terminal', 18))
+
 
 # The Add Task Button
-add_task_button = tk.Button(root, text='Add task', width=300, command=add_task)
-add_task_button.config(activebackground='#F0FFFF')
-add_task_button.pack(expand=True)
+add_task_button = tk.Button(root, text='Add task', font=('Terminal'), height=3, width=300, command=add_task)
+add_task_button.config(activebackground='#000000')
+add_task_button.pack()
+add_task_button.configure(bg='#000000')
+add_task_button.configure(fg='#FFFFF0')
 
 # The Delete Task Button
-delete_task_button = tk.Button(root, text='Delete task', width=300, command=delete_task)
+delete_task_button = tk.Button(root, text='Delete task', font=('Terminal'), height=3, width=300, command=delete_task)
 delete_task_button.config(activebackground='#F0FFFF')
 delete_task_button.pack()
+delete_task_button.configure(bg='#000000')
+delete_task_button.configure(fg='#FFFFF0')
 
 # The Load Tasks Button
-load_task_button = tk.Button(root, text='Load tasks', width=300, command=load_task)
+load_task_button = tk.Button(root, text='Load tasks', font=('Terminal'), height=3, width=300, command=load_task)
 load_task_button.config(activebackground='#F0FFFF')
 load_task_button.pack()
+load_task_button.configure(bg='#000000')
+load_task_button.configure(fg='#FFFFF0')
 
 # The Save Tasks Button
-save_task_button = tk.Button(root, text='Save tasks', width=300, command=save_task)
-load_task_button.config(activebackground='#F0FFFF')
+save_task_button = tk.Button(root, text='Save tasks', font=('Terminal'), height=3, width=300, command=save_task)
+save_task_button.config(activebackground='#F0FFFF')
 save_task_button.pack()
+save_task_button.configure(bg='#000000')
+save_task_button.configure(fg='#FFFFF0')
 
 root.mainloop()
 
