@@ -6,7 +6,7 @@ import pickle
 # Init display window
 root = tk.Tk()
 root.title('The Fox to-do app v1')
-root.geometry('600x600')
+# root.geometry('600x600')
 root.configure(bg='#F0FFFF')
 
 # Function to add task to listbox of tasks
